@@ -16,10 +16,24 @@
 </template>
 
 <script>
+import { firebase } from "@nativescript/firebase";
+
 export default {
   computed: {
-    message() {
-      return "for firebase test";
+    async message() {
+      const Ref = firebase.firestore
+        .collection("comments")
+        .doc("07bhQeWDf3u1j0B4vNwG");
+      const doc = await Ref.get();
+      if (!doc.exists) {
+        console.log("No such document!");
+        return "No such document!";
+      } else {
+        console.log("Document data:", doc.data());
+        const hoge = doc.data();
+        console.log("hoge.commented_at", hoge.commented_at);
+        return hoge.commented_at;
+      }
     },
   },
 };
