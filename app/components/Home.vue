@@ -25,19 +25,12 @@ export default {
         .collection("comments")
         .doc("07bhQeWDf3u1j0B4vNwG");
       const doc = await Ref.get();
-      if (!doc.exists) {
-        console.log("No such document!");
-        return "No such document!";
-      } else {
-        console.log("Document data:", doc.data());
-        const hoge = doc.data();
-        console.log("hoge.commented_at", hoge.commented_at);
-        const hogeTimestampNow = firebase.firestore.Timestamp.now();
-        console.log("hogeTimestampNow", hogeTimestampNow);
-        const hogeToDate = hoge.toDate();
-        console.log("hogeToDate", hogeToDate);
-        return hogeToDate;
-      }
+      const hoge = doc.data();
+      console.log("hoge.commented_at", hoge.commented_at); // CONSOLE LOG: hoge.commented_at Sat Oct 23 2021 22:44:48 GMT+0900 (JST)
+      console.log("hoge.commented_at.seconds", hoge.commented_at.seconds); // CONSOLE LOG: hoge.commented_at.seconds undefined
+      const hogeToDate = hoge.toDate();
+      console.log("hogeToDate", hogeToDate);
+      return hogeToDate;
     },
   },
 };
