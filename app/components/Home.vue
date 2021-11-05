@@ -27,7 +27,12 @@ export default {
       const doc = await Ref.get();
       const hoge = doc.data();
       console.log("hoge.commented_at", hoge.commented_at); // CONSOLE LOG: hoge.commented_at Sat Oct 23 2021 22:44:48 GMT+0900 (JST)
-      console.log("hoge.commented_at.seconds", hoge.commented_at.seconds); // CONSOLE LOG: hoge.commented_at.seconds undefined
+      console.log(
+        "hoge.commented_at in milliseconds: ",
+        Math.floor(hoge.commented_at / 1000)
+      ); // CONSOLE LOG: hoge.commented_at in milliseconds:  1634996688
+      const getNewDate = new Date("October 23, 2021, 22:44:48 GMT+0900"); // same as hoge.commented_at
+      console.log("getNewDate in milliseconds: ", getNewDate.getTime() / 1000); // CONSOLE LOG: getNewDate in milliseconds:  1634996688
       const hogeToDate = hoge.toDate();
       console.log("hogeToDate", hogeToDate);
       return hogeToDate;
