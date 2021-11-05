@@ -32,7 +32,11 @@ export default {
         console.log("Document data:", doc.data());
         const hoge = doc.data();
         console.log("hoge.commented_at", hoge.commented_at);
-        return hoge.commented_at;
+        const hogeTimestampNow = firebase.firestore.Timestamp.now();
+        console.log("hogeTimestampNow", hogeTimestampNow);
+        const hogeToDate = hoge.toDate();
+        console.log("hogeToDate", hogeToDate);
+        return hogeToDate;
       }
     },
   },
